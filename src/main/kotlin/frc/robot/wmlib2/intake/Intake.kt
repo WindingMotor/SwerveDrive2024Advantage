@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase
 import frc.robot.subsystems.intake.IO_IntakeBase.IntakeInputs
 import com.revrobotics.CANSparkMax.IdleMode
 
-class SUB_Intake(
+class Intake(
     private val io: IO_IntakeBase
 ): SubsystemBase(){
 
