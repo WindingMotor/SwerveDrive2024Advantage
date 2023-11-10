@@ -1,5 +1,5 @@
 
-package frc.robot.subsystems.sensor
+package frc.robot.wmlib2.sensor
 
 import com.ctre.phoenix6.BaseStatusSignal
 import com.ctre.phoenix6.StatusCode
@@ -9,16 +9,14 @@ import com.ctre.phoenix6.hardware.Pigeon2
 import com.kauailabs.navx.frc.AHRS
 import edu.wpi.first.math.geometry.Rotation2d
 import edu.wpi.first.math.util.Units
-import frc.robot.subsystems.sensor.GyroIO
-import frc.robot.subsystems.sensor.GyroIO.GyroIOInputs
+import frc.robot.wmlib2.sensor.IO_Gyro
+import frc.robot.wmlib2.sensor.IO_Gyro.GyroIOInputs
 import edu.wpi.first.wpilibj.SPI;
 
-class GyroNavx : GyroIO{
+class IO_Navx(
+) : IO_Gyro{
 
-    private val ahrs = AHRS(SPI.Port.kMXP)
-
-    //private val yaw: StatusSignal<Double> = pigeon.yaw
-    //private val yawVelocity: StatusSignal<Double> = pigeon.angularVelocityZ
+    val ahrs = AHRS(SPI.Port.kMXP)
 
     init{
         ahrs.calibrate()

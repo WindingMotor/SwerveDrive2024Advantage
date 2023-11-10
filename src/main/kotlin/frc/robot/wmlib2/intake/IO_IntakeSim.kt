@@ -1,10 +1,11 @@
 
-package frc.robot.subsystems.intake
+package frc.robot.wmlib2.intake
 
 import org.littletonrobotics.junction.inputs.LoggableInputs
 import org.littletonrobotics.junction.LogTable
-import frc.robot.subsystems.intake.IO_IntakeBase
-import frc.robot.subsystems.intake.IO_IntakeBase.IntakeInputs
+import frc.robot.wmlib2.intake.IO_IntakeBase
+import frc.robot.wmlib2.intake.IO_IntakeBase.IntakeInputs
+import frc.robot.Constants
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMax.IdleMode
 import com.revrobotics.CANSparkMax
@@ -28,7 +29,7 @@ class IO_IntakeSim : IO_IntakeBase{
     override fun updateInputs(inputs: IntakeInputs){
 
         // Update armSim every 0.02 seconds
-        armSim.update(0.02)
+        armSim.update(Constants.loopPeriodSecs)
 
         inputs.appliedVoltage = armAppliedVoltage
         inputs.motorTemperature = 0.2

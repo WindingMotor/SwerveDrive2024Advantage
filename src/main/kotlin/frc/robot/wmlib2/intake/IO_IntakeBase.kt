@@ -1,5 +1,5 @@
 
-package frc.robot.subsystems.intake
+package frc.robot.wmlib2.intake
 
 import org.littletonrobotics.junction.inputs.LoggableInputs
 import org.littletonrobotics.junction.LogTable

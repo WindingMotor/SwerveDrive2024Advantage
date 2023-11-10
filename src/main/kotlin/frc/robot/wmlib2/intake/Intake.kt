@@ -1,11 +1,11 @@
 
-package frc.robot.subsystems.intake
+package frc.robot.wmlib2.intake
 
 import org.littletonrobotics.junction.inputs.LoggableInputs
 import org.littletonrobotics.junction.LogTable
-import org.littletonrobotics.junction.Logger;
+import org.littletonrobotics.junction.Logger
 import edu.wpi.first.wpilibj2.command.SubsystemBase
-import frc.robot.subsystems.intake.IO_IntakeBase.IntakeInputs
+import frc.robot.wmlib2.intake.IO_IntakeBase
 import com.revrobotics.CANSparkMax.IdleMode
 
 class Intake(

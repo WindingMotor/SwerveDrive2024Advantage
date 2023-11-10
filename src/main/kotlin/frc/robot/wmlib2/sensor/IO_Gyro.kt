@@ -1,10 +1,10 @@
 
-package frc.robot.subsystems.sensor
+package frc.robot.wmlib2.sensor
 
 import edu.wpi.first.math.geometry.Rotation2d
 import org.littletonrobotics.junction.AutoLog
 
-interface GyroIO{
+interface IO_Gyro{
 
     @AutoLog
     class GyroIOInputs{
