@@ -25,7 +25,7 @@ class Module(
 
     private val inputs = IO_ModuleBase.ModuleInputs()
 
-    private val driveFeedforward = SimpleMotorFeedforward(0.18868.0, 0.12825)
+    private val driveFeedforward = SimpleMotorFeedforward(0.18868, 0.12825)
     private val driveFeedpack = PIDController(0.1, 0.0, 0.0, Constants.loopPeriodSecs)
 
     private val turnFeedback = PIDController(10.0, 0.0, 0.0, Constants.loopPeriodSecs)

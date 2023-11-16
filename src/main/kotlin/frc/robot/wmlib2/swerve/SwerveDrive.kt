@@ -61,6 +61,7 @@ class SwerveDrive(
     
         }else if(DriverStation.isEnabled()){ // Run swerve modules.
 
+            /* 
             val setpointTwist = Pose2d().log(Pose2d(
                 setpoint.vxMetersPerSecond * Constants.loopPeriodSecs,
                 setpoint.vyMetersPerSecond * Constants.loopPeriodSecs,
@@ -70,7 +71,8 @@ class SwerveDrive(
                 setpointTwist.dx / Constants.loopPeriodSecs,
                 setpointTwist.dy / Constants.loopPeriodSecs,
                 setpointTwist.dtheta / Constants.loopPeriodSecs
-
+            */
+            
         }
 
     }
