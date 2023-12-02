@@ -32,6 +32,8 @@ class IO_Navx(
     override fun updateInputs(inputs: GyroIOInputs){
         inputs.connected = ahrs.isConnected
         inputs.yawPosition = getRotation2dWrappedRadians()
+        inputs.pitchPosition = Rotation2d()
+        inputs.rollPosition = Rotation2d()
     }
 
 }

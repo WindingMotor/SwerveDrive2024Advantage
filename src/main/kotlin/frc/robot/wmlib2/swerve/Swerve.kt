@@ -22,6 +22,7 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition
 import edu.wpi.first.math.kinematics.SwerveModuleState
 import edu.wpi.first.math.util.Units
 import edu.wpi.first.wpilibj.Timer
+import kotlin.math.abs
 
 class Swerve(
     private val frontLeftIO: IO_ModuleBase,
@@ -31,7 +32,7 @@ class Swerve(
     private val gyroIO: IO_Gyro
 ): SubsystemBase(){
 
-    //private val gyroInputs = IO_Gyro.GyroIOInputs()
+    private val gyroInputs = IO_Gyro.GyroIOInputs()
 
     private val frontLeftModule = Module(frontLeftIO, Constants.ModuleSettings.FRONTLEFT)
     private val frontRightModule = Module(frontRightIO, Constants.ModuleSettings.FRONTRIGHT)
@@ -63,8 +64,8 @@ class Swerve(
     override fun periodic(){
 
         // Update gyroscope inputs.
-        // gyroIO.updateInputs(gyroInputs)
-        // Logger.processInputs("Gyroscope", gyroInputs)
+        gyroIO.updateInputs(gyroInputs)
+        Logger.processInputs("Gyroscope", gyroInputs)
 
         // Update modules periodic loop.
         for(module in modules){
@@ -72,8 +73,12 @@ class Swerve(
         }
 
         // Stop modules if robot is disabled.
-        if(DriverStation.isDisabled()){ for(module in modules){ module.stop() }   
-    
+        if(DriverStation.isDisabled()){
+            for(module in modules){ module.stop() }
+
+            Logger.recordOutput("SwerveStates/Setpoints", arrayOf<Double>())
+            Logger.recordOutput("SwerveStates/SetpointsOptimized", arrayOf<Double>())
+
         }else if(DriverStation.isEnabled()){ // Run swerve modules if robot is enabled.
 
             val setpointTwist = Pose2d().log(Pose2d(
@@ -123,7 +128,33 @@ class Swerve(
                 modules[i].getAngle()
             )
         }
-        
+
+        val twist = kinematics.toTwist2d(*wheelDeltas)
+        val gyroYaw = Rotation2d(gyroInputs.yawPosition.radians)
+
+        var robotPose = Pose3d(Pose2d()) //Pose from vision estimator
+
+        robotPose = robotPose.exp(
+            Twist3d(
+                0.0,
+                0.0,
+                abs(gyroInputs.pitchPosition.radians) * TRACK_WIDTH / 2.0,
+                0.0,
+                gyroInputs.pitchPosition.radians,
+                0.0
+        )).exp(
+            Twist3d(
+                0.0,
+                0.0,
+                abs(gyroInputs.rollPosition.radians) * TRACK_WIDTH / 2.0,
+                gyroInputs.rollPosition.radians,
+                0.0,
+                0.0
+            )
+        )
+
+
+
     }
 
 
