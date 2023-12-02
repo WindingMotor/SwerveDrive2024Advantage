@@ -25,6 +25,7 @@ class IO_ModuleReal(val settings: ModuleSettings) : IO_ModuleBase{
         burnFlash();
     }
 
+    
     private val driveEncoder = driveMotor.encoder.apply{ 
         positionConversionFactor =  Constants.MK4SDS.DRIVE_ROT_2_METER
         velocityConversionFactor = Constants.MK4SDS.DRIVE_RPM_2_MPS

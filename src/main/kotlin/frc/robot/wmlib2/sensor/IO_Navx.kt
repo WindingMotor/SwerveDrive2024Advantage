@@ -12,7 +12,7 @@ import edu.wpi.first.math.util.Units
 import frc.robot.wmlib2.sensor.IO_Gyro
 import frc.robot.wmlib2.sensor.IO_Gyro.GyroIOInputs
 import edu.wpi.first.wpilibj.SPI;
-
+import edu.wpi.first.math.MathUtil;
 class IO_Navx(
 ) : IO_Gyro{
 
@@ -23,14 +23,15 @@ class IO_Navx(
         ahrs.reset()
     }
 
-    fun getRotation2dWrapped(): Rotation2d{
-        val degrees = if((ahrs.yaw.toDouble() % 360) < 0.0){(ahrs.yaw.toDouble() % 360) + 360}else{(ahrs.yaw.toDouble() % 360)}
-        return Rotation2d.fromDegrees(-degrees)
+    // Returns an angle in radians from -pi to pi of the robots rotation
+    fun getRotation2dWrappedRadians(): Rotation2d{
+        //val degrees = if((ahrs.yaw.toDouble() % 360) < 0.0){(ahrs.yaw.toDouble() % 360) + 360}else{(ahrs.yaw.toDouble() % 360)} OLD WRAPPING IN DEGREES
+        return Rotation2d(MathUtil.angleModulus(-ahrs.yaw.toDouble())) // Wraps angle from -pi to pi 
     }
 
     override fun updateInputs(inputs: GyroIOInputs){
         inputs.connected = ahrs.isConnected
-        inputs.yawPosition = Rotation2d.fromDegrees(-ahrs.yaw.toDouble())
+        inputs.yawPosition = getRotation2dWrappedRadians()
     }
 
 }
