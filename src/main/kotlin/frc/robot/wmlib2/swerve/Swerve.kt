@@ -22,13 +22,14 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition
 import edu.wpi.first.math.kinematics.SwerveModuleState
 import edu.wpi.first.math.util.Units
 import edu.wpi.first.wpilibj.Timer
+import org.littletonrobotics.junction.CustomStructs
 import kotlin.math.abs
 
 class Swerve(
     private val frontLeftIO: IO_ModuleBase,
     private val frontRightIO: IO_ModuleBase,
     private val backLeftIO: IO_ModuleBase,
-    private val backrightIO: IO_ModuleBase,
+    private val backRightIO: IO_ModuleBase,
     private val gyroIO: IO_Gyro
 ): SubsystemBase(){
 
@@ -37,13 +38,15 @@ class Swerve(
     private val frontLeftModule = Module(frontLeftIO, Constants.ModuleSettings.FRONTLEFT)
     private val frontRightModule = Module(frontRightIO, Constants.ModuleSettings.FRONTRIGHT)
     private val backLeftModule = Module(backLeftIO, Constants.ModuleSettings.BACKLEFT)
-    private val backRightModule = Module(backrightIO, Constants.ModuleSettings.BACKRIGHT)
+    private val backRightModule = Module(backRightIO, Constants.ModuleSettings.BACKRIGHT)
 
     private val modules = arrayOf(frontLeftModule, frontRightModule, backLeftModule, backRightModule)
 
     private var setpoint = ChassisSpeeds()
-    private var lastSetpointStates = Array(4){ SwerveModuleState() }
+    private var lastSetpointStates = mutableListOf(SwerveModuleState(), SwerveModuleState(), SwerveModuleState(), SwerveModuleState())
 
+
+// *testSetpoint.toTypedArray()
     val TRACK_WIDTH = 0.53975 // Distance between RIGHT and LEFT wheel centers
     val WHEEL_BASE = 0.53975; // Distance between FRONT and BACK wheel centers
 
@@ -76,8 +79,9 @@ class Swerve(
         if(DriverStation.isDisabled()){
             for(module in modules){ module.stop() }
 
-            Logger.recordOutput("SwerveStates/Setpoints", arrayOf<Double>())
-            Logger.recordOutput("SwerveStates/SetpointsOptimized", arrayOf<Double>())
+            //Logger.recordOutput("SwerveStates/Setpoints", arrayOfNulls<SwerveModuleState>(0).toMutableList())
+            //Logger.recordOutput("SwerveStates/SetpointsOptimized", arrayOfNulls<SwerveModuleState>(0).toMutableList())
+
 
         }else if(DriverStation.isEnabled()){ // Run swerve modules if robot is enabled.
 
@@ -102,23 +106,25 @@ class Swerve(
                 for(i in 0 until 4){ setpointStates[i] = SwerveModuleState(0.0, lastSetpointStates[i].angle) }
             }
 
-            lastSetpointStates = setpointStates
+            lastSetpointStates = setpointStates.toMutableList()
 
-            val optimizedStates = Array(4){ SwerveModuleState() }
+            val optimizedStates = mutableListOf(SwerveModuleState(), SwerveModuleState(), SwerveModuleState(), SwerveModuleState())
             for(i in 0 until 4){ optimizedStates[i] = modules[i].runSetpoint(setpointStates[i]) }
 
             // Log the setpoints and optimized setpoints of the modules
-            Logger.recordOutput("SwerveStates/Setpoints", setpointStates)
-            Logger.recordOutput("SwerveStates/SetpointsOptimized", optimizedStates)    
-
+            Logger.recordOutput("SwerveStates/Setpoints", *setpointStates.toMutableList().toTypedArray())
+            Logger.recordOutput("SwerveStates/SetpointsOptimized", *optimizedStates.toTypedArray())
         }
+
+
 
         // Still in periodic function
 
         // Log the module states
-        val measuredStates = Array(4){ SwerveModuleState() }
+        val measuredStates = mutableListOf(SwerveModuleState(), SwerveModuleState(), SwerveModuleState(), SwerveModuleState())
         for(i in 0 until 4){ measuredStates[i] = modules[i].getState() }
-        Logger.recordOutput("SwerveStates/Measured", measuredStates);
+
+       Logger.recordOutput("SwerveStates/Measured", *measuredStates.toTypedArray())
 
         // Update the robot odometry
         val wheelDeltas = Array(4){ SwerveModulePosition() }
@@ -131,9 +137,7 @@ class Swerve(
 
         val twist = kinematics.toTwist2d(*wheelDeltas)
         val gyroYaw = Rotation2d(gyroInputs.yawPosition.radians)
-
-// test
-        var robotPose = Pose3d(Pose2d()) //Pose from vision estimator
+        var robotPose = Pose3d(Pose2d()) // Pose from vision estimator
 
         robotPose = robotPose.exp(
             Twist3d(
@@ -154,12 +158,30 @@ class Swerve(
             )
         )
 
+        Logger.recordOutput("Odometry/Robot3d", robotPose)
+
+        val chassisSpeeds = kinematics.toChassisSpeeds(*measuredStates.toTypedArray())
+
+        val linearFieldVelocity = Translation2d(chassisSpeeds.vxMetersPerSecond, chassisSpeeds.vyMetersPerSecond)
+                .rotateBy(Rotation2d()) // Pose estimator rotation position
+
+        val linaerFieldVelocity = Twist2d(
+                linearFieldVelocity.x,
+                linearFieldVelocity.y,
+                if(gyroInputs.connected) gyroInputs.yawPosition.radians else chassisSpeeds.omegaRadiansPerSecond
+        )
 
 
     }
 
+    // Set the swerve setpoint to the desired chassis speeds
+    fun runVelocity(speeds: ChassisSpeeds){
+        setpoint = speeds
+    }
 
-
+    fun stop(){
+        runVelocity(ChassisSpeeds())
+    }
 
 
 }

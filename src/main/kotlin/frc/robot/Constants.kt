@@ -22,10 +22,11 @@ object Constants{
         val absoluteEncoderOffset: Double,
         val moduleName: String){
 
-        FRONTLEFT(1, 2, 3, 4.0, "FrontLeft"),
-        FRONTRIGHT(1, 2, 3, 4.0, "BackRight"),
-        BACKLEFT(1, 2, 3, 4.0, "BackLeft"),
-        BACKRIGHT(1, 2, 3, 4.0, "BackRight")
+        FRONTLEFT(1, 2, 1, 4.0, "FrontLeft"),
+        FRONTRIGHT(3, 4, 2, 4.0, "BackRight"),
+        BACKLEFT(5, 6, 3, 4.0, "BackLeft"),
+        BACKRIGHT(7, 8, 4, 4.0, "BackRight"),
+        DEFAULT(9, 10, 32, 32.0, "DEFAULT")
     }
 
     object MK4SDS{

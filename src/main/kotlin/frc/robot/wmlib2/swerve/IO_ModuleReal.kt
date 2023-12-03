@@ -15,7 +15,7 @@ import frc.robot.Constants.MK4SDS
 import frc.robot.Constants.ModuleSettings
 
 // Abstracted from IO_IntakeBase, contains the code to interface with the hardware.
-class IO_ModuleReal(val settings: ModuleSettings) : IO_ModuleBase{
+class IO_ModuleReal(val settings: ModuleSettings = Constants.ModuleSettings.DEFAULT) : IO_ModuleBase{
 
     private val driveMotor = CANSparkMax(settings.driveID, MotorType.kBrushless).apply{
         

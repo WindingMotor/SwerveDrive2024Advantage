@@ -13,7 +13,7 @@ import com.revrobotics.CANSparkMax
 class IO_IntakeReal : IO_IntakeBase{
 
     // Intake motor, sets current limit to 30A and removes any inversion
-    private val motor = CANSparkMax(1, MotorType.kBrushless).apply{
+    private val motor = CANSparkMax(12, MotorType.kBrushless).apply{
         setIdleMode(IdleMode.kCoast)
         setSmartCurrentLimit(30);
         setInverted(false);
