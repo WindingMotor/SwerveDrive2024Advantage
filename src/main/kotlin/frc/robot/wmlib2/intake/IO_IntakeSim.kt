@@ -1,18 +1,16 @@
 
 package frc.robot.wmlib2.intake
 
-import org.littletonrobotics.junction.inputs.LoggableInputs
-import org.littletonrobotics.junction.LogTable
-import frc.robot.wmlib2.intake.IO_IntakeBase
-import frc.robot.wmlib2.intake.IO_IntakeBase.IntakeInputs
-import frc.robot.Constants
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMax.IdleMode
-import com.revrobotics.CANSparkMax
-import edu.wpi.first.math.system.plant.DCMotor
-import edu.wpi.first.math.VecBuilder
 import edu.wpi.first.math.MathUtil
+import edu.wpi.first.math.VecBuilder
+import edu.wpi.first.math.system.plant.DCMotor
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim
+import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d
+import frc.robot.Constants
+import frc.robot.wmlib2.intake.IO_IntakeBase.IntakeInputs
+import org.littletonrobotics.junction.Logger
+
 
 // Abstracted from IO_IntakeBase, contains the code to simulate the robot hardware
 class IO_IntakeSim : IO_IntakeBase{
@@ -34,6 +32,10 @@ class IO_IntakeSim : IO_IntakeBase{
         inputs.appliedVoltage = armAppliedVoltage
         inputs.motorTemperature = 0.2
         inputs.encoderVelocity = 0.3
+
+        val mechanism = Mechanism2d(3.0, 3.0)
+        Logger.recordOutput("Intake/armSim", mechanism)
+
     }
 
     // Set motor speed 

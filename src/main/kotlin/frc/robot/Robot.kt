@@ -31,7 +31,7 @@ class Robot : LoggedRobot() {
     override fun robotInit() {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
-        robotContainer = RobotContainer()
+        robotContainer = RobotContainer(mode)
 
         Logger.recordMetadata("ProjectName", "SwerveDrive2024Advantage"); 
         Logger.recordMetadata("Github", "https://github.com/WindingMotor/SwerveDrive2024Advantage"); 

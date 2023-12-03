@@ -116,7 +116,7 @@ class Swerve(
             Logger.recordOutput("SwerveStates/SetpointsOptimized", *optimizedStates.toTypedArray())
         }
 
-
+        Logger.recordOutput("Odometry/testPose", Pose2d(Translation2d(3.0,3.0), Rotation2d()))
 
         // Still in periodic function
 
