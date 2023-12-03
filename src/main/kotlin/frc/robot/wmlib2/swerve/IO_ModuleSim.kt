@@ -58,13 +58,13 @@ class IO_ModuleSim(val settings: ModuleSettings = Constants.ModuleSettings.DEFAU
             inputs.turnTempCelcius = 0.0
         }
 
-        override fun setDriveVoltage(volts: Double){
-            driveAppliedVolts = MathUtil.clamp(volts, -12.0, 12.0)
+        override fun setDriveVoltage(voltage: Double){
+            driveAppliedVolts = MathUtil.clamp(voltage, -12.0, 12.0)
             driveSim.setInputVoltage(driveAppliedVolts)
         }
 
-        override fun setTurnVoltage(volts: Double){
-            turnAppliedVolts = MathUtil.clamp(volts, -12.0, 12.0)
+        override fun setTurnVoltage(voltage: Double){
+            turnAppliedVolts = MathUtil.clamp(voltage, -12.0, 12.0)
             turnSim.setInputVoltage(turnAppliedVolts)
         }
 
