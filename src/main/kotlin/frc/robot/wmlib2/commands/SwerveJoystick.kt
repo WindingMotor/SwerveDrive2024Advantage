@@ -6,14 +6,12 @@ import edu.wpi.first.math.geometry.Rotation2d
 import edu.wpi.first.math.geometry.Translation2d
 import edu.wpi.first.math.kinematics.ChassisSpeeds
 import edu.wpi.first.wpilibj.DriverStation
-import edu.wpi.first.wpilibj.DriverStation.Alliance
 import edu.wpi.first.wpilibj2.command.Command
+import frc.robot.Constants
 import frc.robot.wmlib2.swerve.Swerve
 import frc.robot.wmlib2.util.AllianceFlipUtil
-import frc.robot.wmlib2.util.FieldConstants
 import frc.robot.wmlib2.util.GeomUtil
 import java.util.function.Supplier
-import kotlin.math.absoluteValue
 import kotlin.math.hypot
 import kotlin.math.withSign
 
@@ -24,17 +22,11 @@ class SwerveJoystick(
         private val swerve: Swerve
 ): Command(){
 
-    val deadband = 0.1
-
-    val linearSpeedLimit = 1.0
-    val angularSpeedLimit = 25.0
-
-    val maxLinearSpeedMetersPerSec = 0.0
-    val minExtensionMaxAngularVelocity = 0.0
-
     init{
         addRequirements(swerve)
     }
+
+    val isFieldRelative = true
 
     override fun execute(){
 
@@ -43,52 +35,63 @@ class SwerveJoystick(
         val yCurrent = yInput.get()
         val rCurrent = rInput.get()
 
-        // Get direction and magnitude of linear axes (x & y) & rotation
+        // Get direction and magnitude of linear axes (x & y) & rotation, so we can modify them
         var linearMagnitude = hypot(xCurrent, yCurrent)
         val linearDirection = Rotation2d(xCurrent, yCurrent)
         var angularSpeed = rCurrent
 
-        // Apply deadband
-        linearMagnitude = MathUtil.applyDeadband(linearMagnitude, deadband)
-        angularSpeed = MathUtil.applyDeadband(angularSpeed, deadband)
+        // Apply deadband, for mitigating controller drift
+        linearMagnitude = MathUtil.applyDeadband(linearMagnitude, Constants.Kinematics.DRIVE_DEADBAND)
+        angularSpeed = MathUtil.applyDeadband(angularSpeed, Constants.Kinematics.DRIVE_DEADBAND)
 
-        // Apply squaring
+        // Apply squaring, the farther the driver pushes the faster the robot goes
         linearMagnitude = (linearMagnitude * linearMagnitude).withSign(linearMagnitude)
         angularSpeed = (angularSpeed * angularSpeed).withSign(angularSpeed)
 
-        // Apply speed limits
-        linearMagnitude *= linearSpeedLimit
-        angularSpeed *= angularSpeedLimit
+        // Apply speed limits, make sure robot doesn't go vroom, vroom to much
+        linearMagnitude *= Constants.Kinematics.LINEAR_SPEED_LIMIT
+        angularSpeed *= Constants.Kinematics.ANGULAR_SPEED_LIMIT
 
-        // Calculate new linear components
+        // Calculate new linear components from linearMagnitude and linearDirection
         val linearVelocity: Translation2d = Pose2d(Translation2d(), linearDirection).transformBy(GeomUtil.translationToTransform(linearMagnitude, 0.0)).translation
 
-        // Convert speeds to m/s
+        // Create speeds and convert linearVelocity to m/s
         var speeds = ChassisSpeeds(
-            linearVelocity.x * maxLinearSpeedMetersPerSec,
-            linearVelocity.y * maxLinearSpeedMetersPerSec,
-            angularSpeed * minExtensionMaxAngularVelocity
+            linearVelocity.x * Constants.Kinematics.MAX_LINEAR_VELOCITY,
+            linearVelocity.y * Constants.Kinematics.MAX_LINEAR_VELOCITY,
+            angularSpeed * Constants.Kinematics.MIN_EXTENSION_ANGULAR_VELOCITY
         )
 
-        // Always convert from field relative
+        // Flip robot rotation if on different alliance, field relative
         var currentRotation = swerve.getEstimatedRotation()
         if(DriverStation.getAlliance().orElse(DriverStation.Alliance.Blue) == DriverStation.Alliance.Red){ // If there is not an option for the Optional<>! it will go to Blue
             currentRotation = currentRotation.plus(Rotation2d(Math.PI))
         }
 
-        // Apply field relative
-        speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
-                speeds.vxMetersPerSecond,
-                speeds.vyMetersPerSecond,
-                speeds.omegaRadiansPerSecond,
-                currentRotation
-        )
+        // Apply field relative or non-field relative for PathPlanner
+        speeds = if(isFieldRelative){
+            ChassisSpeeds.fromFieldRelativeSpeeds(
+                    speeds.vxMetersPerSecond,
+                    speeds.vyMetersPerSecond,
+                    speeds.omegaRadiansPerSecond,
+                    currentRotation
+            )
+        }else{
+            ChassisSpeeds.fromRobotRelativeSpeeds(
+                    speeds.vxMetersPerSecond,
+                    speeds.vyMetersPerSecond,
+                    speeds.omegaRadiansPerSecond,
+                    currentRotation
+            )
+        }
 
         // Get current drive translation from vision, flip if need be
-        val driveTranslation = AllianceFlipUtil.apply(swerve.getEstimatedPose().translation)
+        //val driveTranslation = AllianceFlipUtil.apply(swerve.getEstimatedPose().translation)
 
         swerve.runVelocity(speeds)
+
         /*
+
         // Made modules go in X pattern if the robot is on the charge station
         if (speeds.vxMetersPerSecond.absoluteValue < 1e-3
                 && speeds.vyMetersPerSecond.absoluteValue < 1e-3
@@ -103,6 +106,7 @@ class SwerveJoystick(
             swerve.runVelocity(speeds)
         }
         */
+
     }
 
     override fun end(interrupted: Boolean){

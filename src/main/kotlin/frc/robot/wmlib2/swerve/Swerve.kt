@@ -47,7 +47,7 @@ class Swerve(
     private var lastModulePositionsMeters = arrayOf(0.0, 0.0, 0.0, 0.0)
 
     // Non-vision odometry test
-    private val traditionalSwerveDriveOdometry = SwerveDriveOdometry(Constants.Kinematics.kinematics, gyroInputs.yawPosition, arrayOf(SwerveModulePosition(), SwerveModulePosition(), SwerveModulePosition(), SwerveModulePosition()))
+    private val traditionalSwerveDriveOdometry = SwerveDriveOdometry(Constants.Kinematics.KINEMATICS, gyroInputs.yawPosition, arrayOf(SwerveModulePosition(), SwerveModulePosition(), SwerveModulePosition(), SwerveModulePosition()))
 
     override fun periodic(){
 
@@ -70,43 +70,44 @@ class Swerve(
 
         }else if(DriverStation.isEnabled()){ // Run swerve modules if robot is enabled.
 
-            // Get the twist from the setpoint
+            // Get the twist from setpoint
             val setpointTwist = Pose2d().log(Pose2d(
                 setpoint.vxMetersPerSecond * Constants.loopPeriodSecs,
                 setpoint.vyMetersPerSecond * Constants.loopPeriodSecs,
                 Rotation2d(setpoint.omegaRadiansPerSecond * Constants.loopPeriodSecs)
             ))
 
-            // Adjust the speeds using setpointTwist
+            // Get new ChassisSpeeds from setPoint twist while applying loopPeriodic
             val adjustedSpeeds = ChassisSpeeds(
                 setpointTwist.dx / Constants.loopPeriodSecs,
                 setpointTwist.dy / Constants.loopPeriodSecs,
                 setpointTwist.dtheta / Constants.loopPeriodSecs
             )
 
-            // Convert speeds into swerveModuleStates
-            val setpointStates = Constants.Kinematics.kinematics.toSwerveModuleStates(adjustedSpeeds)
+            // Convert the adjustedSpeeds to setpointStates
+            val setpointStates = Constants.Kinematics.KINEMATICS.toSwerveModuleStates(adjustedSpeeds)
 
-            // Desaturate setpoint states
+            // Desaturate setpoint states, make sure every position is obtainable
             SwerveDriveKinematics.desaturateWheelSpeeds(setpointStates, 4.5) // Max linear speed in m/s
 
-            // If the new states do nothing keep the old ones
+            // If the adjustedSpeeds does not move the robot keep the old setpointStates
             if(adjustedSpeeds.vxMetersPerSecond == 0.0 &&
                 adjustedSpeeds.vyMetersPerSecond == 0.0 &&
                 adjustedSpeeds.omegaRadiansPerSecond == 0.0){
                 for(i in 0 until 4){ setpointStates[i] = SwerveModuleState(0.0, lastSetpointStates[i].angle) }
             }
 
-            // Set the last setpoints to the current ones
+            // Set the lastSetpointStates to the current ones
             lastSetpointStates = setpointStates.toMutableList()
 
-            // Optimize the states then send them to the swerve modules
-            val optimizedStates = mutableListOf(SwerveModuleState(), SwerveModuleState(), SwerveModuleState(), SwerveModuleState())
-            for(i in 0 until 4){ optimizedStates[i] = modules[i].runSetpoint(setpointStates[i]) }
+            // Send the states to each swerve module
+            for (i in 0 until 4) {
+                modules[i].runSetpoint(setpointStates[i])
+            }
 
-            // Log the setpoints and optimized setpoints of the modules
+            // Log the setpoints of each swerve module
             Logger.recordOutput("SwerveStates/Setpoints", *setpointStates.toMutableList().toTypedArray())
-            Logger.recordOutput("SwerveStates/SetpointsOptimized", *optimizedStates.toTypedArray())
+            //Logger.recordOutput("SwerveStates/SetpointsOptimized", *optimizedStates.toTypedArray())
         }
 
         // Still in the periodic function
@@ -130,7 +131,7 @@ class Swerve(
         }
 
         // Get twist from the wheel deltas
-        val twist = Constants.Kinematics.kinematics.toTwist2d(*wheelDeltas)
+        val twist = Constants.Kinematics.KINEMATICS.toTwist2d(*wheelDeltas)
 
         // Get current gyro yaw position
         val gyroYaw = Rotation2d(gyroInputs.yawPosition.radians)
@@ -172,7 +173,7 @@ class Swerve(
 
 
         // Get current chassis speeds
-        val chassisSpeeds = Constants.Kinematics.kinematics.toChassisSpeeds(*measuredStates.toTypedArray())
+        val chassisSpeeds = Constants.Kinematics.KINEMATICS.toChassisSpeeds(*measuredStates.toTypedArray())
 
         // Get current linear field velocity
         val linearFieldVelocity = Translation2d(chassisSpeeds.vxMetersPerSecond, chassisSpeeds.vyMetersPerSecond).rotateBy(getEstimatedRotation())
@@ -196,7 +197,7 @@ class Swerve(
     fun stopWithX(){
         stop()
         lastSetpointStates.forEachIndexed { i, state ->
-            lastSetpointStates[i] = SwerveModuleState(state.speedMetersPerSecond, Constants.Kinematics.moduleTranslations[i].angle)
+            lastSetpointStates[i] = SwerveModuleState(state.speedMetersPerSecond, Constants.Kinematics.MODULE_TRANSLATIONS[i].angle)
         }
     }
 

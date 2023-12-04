@@ -33,10 +33,10 @@ class Robot : LoggedRobot() {
         // autonomous chooser on the dashboard.
         robotContainer = RobotContainer(mode)
 
-        Logger.recordMetadata("ProjectName", "SwerveDrive2024Advantage"); 
-        Logger.recordMetadata("Github", "https://github.com/WindingMotor/SwerveDrive2024Advantage"); 
-        Logger.recordMetadata("Team", "2106"); 
-        Logger.recordMetadata("Last Competition", "Offseason"); 
+        Logger.recordMetadata("ProjectName", "SwerveDrive2024Advantage")
+        Logger.recordMetadata("Github", "https://github.com/WindingMotor/SwerveDrive2024Advantage")
+        Logger.recordMetadata("Team", "2106")
+        Logger.recordMetadata("Last Competition", "Off-season")
 
         when (mode){
 

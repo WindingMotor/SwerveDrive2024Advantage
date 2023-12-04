@@ -53,16 +53,27 @@ object Constants{
         const val TRACK_WIDTH = 0.53975 // Distance between RIGHT and LEFT wheel centers
         const val WHEEL_BASE = 0.53975; // Distance between FRONT and BACK wheel centers
 
-        val moduleTranslations = arrayOf(
+        val MODULE_TRANSLATIONS = arrayOf(
                 Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2), // Front Left
                 Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2), // Front Right
                 Translation2d(WHEEL_BASE / 2, -TRACK_WIDTH / 2), // Back Left
                 Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2) // Back Right
         )
 
-        val kinematics = SwerveDriveKinematics(*moduleTranslations)
+        val KINEMATICS = SwerveDriveKinematics(*MODULE_TRANSLATIONS)
+
+        // Used for conversion to M/S
+        const val MAX_LINEAR_VELOCITY = 12.0
+        const val MIN_EXTENSION_ANGULAR_VELOCITY = 12.0
+
+        // Joystick speed limits
+        const val LINEAR_SPEED_LIMIT = 12.0
+        const val ANGULAR_SPEED_LIMIT = 12.0
+
+        const val DRIVE_DEADBAND = 0.05
 
     }
+
 
     
 }
