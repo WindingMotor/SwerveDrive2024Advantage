@@ -1,6 +1,9 @@
 
 package frc.robot
 
+import edu.wpi.first.math.geometry.Translation2d
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics
+
 object Constants{
 
     // Current robot mode.
@@ -23,7 +26,7 @@ object Constants{
         val moduleName: String){
 
         FRONTLEFT(1, 2, 1, 4.0, "FrontLeft"),
-        FRONTRIGHT(3, 4, 2, 4.0, "BackRight"),
+        FRONTRIGHT(3, 4, 2, 4.0, "FrontRight"),
         BACKLEFT(5, 6, 3, 4.0, "BackLeft"),
         BACKRIGHT(7, 8, 4, 4.0, "BackRight"),
         DEFAULT(9, 10, 32, 32.0, "DEFAULT")
@@ -42,6 +45,24 @@ object Constants{
         const val TURN_RPM_2_RADPS = TURN_ROT_2_RAD / 60;
       
         const val FREE_MOTOR_SPEED_RPS = 5676 / 60
+
     }
+
+    object Kinematics{
+
+        const val TRACK_WIDTH = 0.53975 // Distance between RIGHT and LEFT wheel centers
+        const val WHEEL_BASE = 0.53975; // Distance between FRONT and BACK wheel centers
+
+        val moduleTranslations = arrayOf(
+                Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2), // Front Left
+                Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2), // Front Right
+                Translation2d(WHEEL_BASE / 2, -TRACK_WIDTH / 2), // Back Left
+                Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2) // Back Right
+        )
+
+        val kinematics = SwerveDriveKinematics(*moduleTranslations)
+
+    }
+
     
 }

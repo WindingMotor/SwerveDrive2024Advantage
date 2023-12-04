@@ -16,6 +16,7 @@ import com.revrobotics.CANSparkMax.IdleMode
 import frc.robot.Constants.ModuleSettings
 import frc.robot.Constants.MK4SDS
 import frc.robot.Constants
+import kotlin.math.cos
 
 
 class Module(
@@ -26,11 +27,11 @@ class Module(
     private val inputs = IO_ModuleBase.ModuleInputs()
 
     private val driveFeedforward = SimpleMotorFeedforward(0.18868, 0.12825)
-    private val driveFeedpack = PIDController(0.1, 0.0, 0.0, Constants.loopPeriodSecs)
+    private val driveFeedback = PIDController(0.1, 0.0, 0.0, Constants.loopPeriodSecs)
 
     private val turnFeedback = PIDController(10.0, 0.0, 0.0, Constants.loopPeriodSecs)
     
-    val wheelRadiusMeters = Constants.MK4SDS.WHEEL_DIAMETER
+    private val wheelRadiusMeters = Constants.MK4SDS.WHEEL_DIAMETER
 
     // Returns the new optimized state of the module while sending motor voltage commands.
     fun runSetpoint(state: SwerveModuleState): SwerveModuleState{
@@ -42,7 +43,7 @@ class Module(
         io.setTurnVoltage(turnFeedback.calculate(getAngle().radians, optimizedState.angle.radians))
     
         // Adjust the speed based on the turn feedback (possibly to account for strafing).
-        optimizedState.speedMetersPerSecond *= Math.cos(turnFeedback.positionError)
+        optimizedState.speedMetersPerSecond *= cos(turnFeedback.positionError)
     
         // Calculate the desired velocity in radians per second.
         val velocityRadPerSec = optimizedState.speedMetersPerSecond / wheelRadiusMeters

@@ -11,18 +11,21 @@ interface IO_Gyro{
     class GyroIOInputs: LoggableInputs {
         var connected: Boolean = false
         var yawPosition: Rotation2d = Rotation2d()
+        var yawPositionRadians: Double = 0.0
         var pitchPosition: Rotation2d = Rotation2d()
         var rollPosition: Rotation2d = Rotation2d()
 
         override fun toLog(table: LogTable){
             table.put("connected", connected)
             table.put("yawPosition", yawPosition)
+            table.put("yawPositionRadians", yawPositionRadians)
             table.put("pitchPosition", pitchPosition)
             table.put("rollPosition", rollPosition)
         }
         override fun fromLog(table: LogTable){
             connected = table.get("connected", connected)
             yawPosition = table.get("yawPosition", yawPosition)
+            yawPositionRadians = table.get("yawPositionRadians", yawPositionRadians)
             pitchPosition = table.get("encoderVelocity", pitchPosition)
             rollPosition = table.get("encoderVelocity", rollPosition)
         }

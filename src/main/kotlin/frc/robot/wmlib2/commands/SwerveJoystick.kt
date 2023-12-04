@@ -18,10 +18,10 @@ import kotlin.math.hypot
 import kotlin.math.withSign
 
 class SwerveJoystick(
-        private val swerve: Swerve,
         private val xInput: Supplier<Double>,
         private val yInput: Supplier<Double>,
-        private val rInput: Supplier<Double>
+        private val rInput: Supplier<Double>,
+        private val swerve: Swerve
 ): Command(){
 
     val deadband = 0.1
@@ -31,6 +31,10 @@ class SwerveJoystick(
 
     val maxLinearSpeedMetersPerSec = 0.0
     val minExtensionMaxAngularVelocity = 0.0
+
+    init{
+        addRequirements(swerve)
+    }
 
     override fun execute(){
 
@@ -81,8 +85,10 @@ class SwerveJoystick(
         )
 
         // Get current drive translation from vision, flip if need be
-        var driveTranslation = AllianceFlipUtil.apply(swerve.getEstimatedPose().translation)
+        val driveTranslation = AllianceFlipUtil.apply(swerve.getEstimatedPose().translation)
 
+        swerve.runVelocity(speeds)
+        /*
         // Made modules go in X pattern if the robot is on the charge station
         if (speeds.vxMetersPerSecond.absoluteValue < 1e-3
                 && speeds.vyMetersPerSecond.absoluteValue < 1e-3
@@ -96,7 +102,11 @@ class SwerveJoystick(
         }else{
             swerve.runVelocity(speeds)
         }
+        */
     }
 
+    override fun end(interrupted: Boolean){
+        swerve.stop()
+    }
 
 }

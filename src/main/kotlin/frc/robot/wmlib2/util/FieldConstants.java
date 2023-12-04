@@ -18,7 +18,7 @@ import java.util.List;
  * of corners start in the lower left moving clockwise.
  *
  * <p>All translations and poses are stored with the origin at the rightmost point on the BLUE
- * ALLIANCE wall. Use the {@link #allianceFlip(Translation2d)} and {@link #allianceFlip(Pose2d)}
+ * ALLIANCE wall
  * methods to flip these values based on the current alliance color.
  */
 public final class FieldConstants {

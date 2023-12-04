@@ -1,33 +1,47 @@
 
 package frc.robot
 import edu.wpi.first.wpilibj2.command.Command
-import frc.robot.Constants
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController
 import frc.robot.Constants.RobotMode
+import frc.robot.wmlib2.commands.SwerveJoystick
 import frc.robot.wmlib2.intake.Intake
 import frc.robot.wmlib2.intake.IO_IntakeReal
 import frc.robot.wmlib2.intake.IO_IntakeSim
-import frc.robot.wmlib2.sensor.IO_Navx
-import frc.robot.wmlib2.swerve.IO_ModuleBase
+import frc.robot.wmlib2.sensor.IO_GyroReal
+import frc.robot.wmlib2.sensor.IO_GyroSim
 import frc.robot.wmlib2.swerve.IO_ModuleReal
 import frc.robot.wmlib2.swerve.IO_ModuleSim
 import frc.robot.wmlib2.swerve.Swerve
 
 class RobotContainer(mode: RobotMode) {
 
+
     private val isReal = if(mode == RobotMode.REAL) true else false
 
-    val intake = Intake(if(isReal) IO_IntakeReal() else IO_IntakeSim())
+    private val driverController = CommandXboxController(3)
 
-    val swerve = Swerve(
+    private val intake = Intake(if(isReal) IO_IntakeReal() else IO_IntakeSim())
+
+    private val swerve = Swerve(
             if(isReal) IO_ModuleReal(Constants.ModuleSettings.FRONTLEFT) else IO_ModuleSim(Constants.ModuleSettings.FRONTLEFT),
             if(isReal) IO_ModuleReal(Constants.ModuleSettings.FRONTRIGHT) else IO_ModuleSim(Constants.ModuleSettings.FRONTRIGHT),
             if(isReal) IO_ModuleReal(Constants.ModuleSettings.BACKLEFT) else IO_ModuleSim(Constants.ModuleSettings.BACKLEFT),
             if(isReal) IO_ModuleReal(Constants.ModuleSettings.BACKRIGHT) else IO_ModuleSim(Constants.ModuleSettings.BACKRIGHT),
-            if(isReal) IO_Navx() else IO_Navx()
+            if(isReal) IO_GyroReal() else IO_GyroSim()
     )
 
     init{
+
         configureBindings()
+
+
+        swerve.defaultCommand = SwerveJoystick(
+            { -driverController.getRawAxis(0) }, // xInput
+            { driverController.getRawAxis(1) }, // yInput
+            { driverController.getRawAxis(3) }, // rInput
+            swerve
+        )
+
     }
 
     private fun configureBindings(){

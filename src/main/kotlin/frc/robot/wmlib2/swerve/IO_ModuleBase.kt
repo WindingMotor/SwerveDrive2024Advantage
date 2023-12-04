@@ -27,14 +27,14 @@ interface IO_ModuleBase{
             table.put("driveVelocityRadPerSec", driveVelocityRadPerSec)
             table.put("driveAppliedVolts", driveAppliedVolts)
             table.put("driveCurrentAmps", driveCurrentAmps)
-            table.put("driveTempCelcius", driveTempCelcius)
+            table.put("driveTempCelsius", driveTempCelcius)
 
             table.put("turnAbsolutePositionRad", turnAbsolutePositionRad)
             table.put("turnPositionRad", turnPositionRad)
             table.put("turnVelocityRadPerSec", turnVelocityRadPerSec)
             table.put("turnAppliedVolts", turnAppliedVolts)
             table.put("turnCurrentAmps", turnCurrentAmps)
-            table.put("turnTempCelcius", turnTempCelcius)
+            table.put("turnTempCelsius", turnTempCelcius)
         }
 
         override fun fromLog(table: LogTable){
@@ -42,14 +42,14 @@ interface IO_ModuleBase{
             driveVelocityRadPerSec = table.get("driveVelocityRadPerSec", driveVelocityRadPerSec)
             driveAppliedVolts = table.get("driveAppliedVolts", driveAppliedVolts)
             driveCurrentAmps = table.get("driveCurrentAmps", driveCurrentAmps)
-            driveTempCelcius = table.get("driveTempCelcius", driveTempCelcius)
+            driveTempCelcius = table.get("turnTempCelsius", driveTempCelcius)
 
             turnAbsolutePositionRad = table.get("turnAbsolutePositionRad", turnAbsolutePositionRad)
             turnPositionRad = table.get("turnPositionRad", turnPositionRad)
             turnVelocityRadPerSec = table.get("turnVelocityRadPerSec", turnVelocityRadPerSec)
             turnAppliedVolts = table.get("turnAppliedVolts", turnAppliedVolts)
             driveCurrentAmps = table.get("driveCurrentAmps", driveCurrentAmps)
-            driveTempCelcius = table.get("driveTempCelcius", driveTempCelcius)
+            driveTempCelcius = table.get("driveTempCelsius", driveTempCelcius)
         }
     }
 
