@@ -23,7 +23,8 @@ object Constants{
         val driveID: Int, val turnID: Int,
         val absoluteEncoderID: Int,
         val absoluteEncoderOffset: Double,
-        val moduleName: String){
+        val moduleName: String
+    ){
 
         FRONTLEFT(1, 2, 1, 4.0, "FrontLeft"),
         FRONTRIGHT(3, 4, 2, 4.0, "FrontRight"),
@@ -74,6 +75,17 @@ object Constants{
 
     }
 
+    enum class DriverBindings(
+        val xInput: Int,
+        val xInverted: Boolean,
+        val yInput: Int,
+        val yInverted: Boolean,
+        val rInput: Int,
+        val rInverted: Boolean,
+    ){
+        TX16S(0, false,1, false,3, false),
+        XBOX(1, true,0, true,4, false)
+    }
 
     
 }

@@ -34,11 +34,12 @@ class RobotContainer(mode: RobotMode) {
 
         configureBindings()
 
+        val driverBindings = Constants.DriverBindings.XBOX
 
         swerve.defaultCommand = SwerveJoystick(
-            { -driverController.getRawAxis(0) }, // xInput
-            { driverController.getRawAxis(1) }, // yInput
-            { driverController.getRawAxis(3) }, // rInput
+            { if(driverBindings.xInverted) -driverController.getRawAxis(driverBindings.xInput) else driverController.getRawAxis(driverBindings.xInput) },
+            { if(driverBindings.yInverted) -driverController.getRawAxis(driverBindings.yInput) else driverController.getRawAxis(driverBindings.yInput) },
+            { if(driverBindings.rInverted) -driverController.getRawAxis(driverBindings.rInput) else driverController.getRawAxis(driverBindings.rInput) },
             swerve
         )
 
