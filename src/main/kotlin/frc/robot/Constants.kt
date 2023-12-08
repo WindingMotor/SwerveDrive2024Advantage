@@ -48,6 +48,16 @@ object Constants{
       
         const val FREE_MOTOR_SPEED_RPS = 5676 / 60
 
+        // PIDs
+        const val TURN_MODULE_PID_P = 0.75; // 0.5
+        const val TURN_MODULE_PID_I = 0.000001; // 0.0
+        const val TURN_MODULE_PID_D =  0.00025; // 0.0
+
+        const val DRIVE_MODULE_PID_P = 0.45;
+        const val DRIVE_MODULE_PID_I = 0.0;
+        const val DRIVE_MODULE_PID_D = 0.0;
+
+
     }
 
     object Kinematics{
@@ -66,7 +76,7 @@ object Constants{
 
         // Used for conversion to M/S
         const val MAX_LINEAR_VELOCITY = 12.0
-        const val MIN_EXTENSION_ANGULAR_VELOCITY = 12.0
+        const val MAX_ANGULAR_VELOCITY = 12.0
 
         // Joystick speed limits
         const val LINEAR_SPEED_LIMIT = 12.0

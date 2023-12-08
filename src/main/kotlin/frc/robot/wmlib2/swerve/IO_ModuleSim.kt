@@ -17,6 +17,7 @@ import frc.robot.Constants
 import frc.robot.Constants.MK4SDS
 import frc.robot.Constants.ModuleSettings
 
+/* REMOVED FOR NOW -> NEED TO GET REAL DRIVEBASE DONE!
 // Abstracted from IO_IntakeBase, contains the code to simulate the hardware.
 class IO_ModuleSim(val settings: ModuleSettings = Constants.ModuleSettings.DEFAULT) : IO_ModuleBase{
 
@@ -69,3 +70,6 @@ class IO_ModuleSim(val settings: ModuleSettings = Constants.ModuleSettings.DEFAU
         }
 
     }
+
+
+ */

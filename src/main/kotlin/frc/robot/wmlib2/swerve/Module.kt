@@ -19,6 +19,7 @@ import frc.robot.Constants
 import kotlin.math.cos
 
 
+
 class Module(
     private val io: IO_ModuleBase,
     private val settings: ModuleSettings
@@ -26,30 +27,14 @@ class Module(
 
     private val inputs = IO_ModuleBase.ModuleInputs()
 
-    private val driveFeedforward = SimpleMotorFeedforward(0.18868, 0.12825)
-    private val driveFeedback = PIDController(0.1, 0.0, 0.0, Constants.loopPeriodSecs)
-
-    private val turnFeedback = PIDController(10.0, 0.0, 0.0, Constants.loopPeriodSecs)
-    
-    private val wheelRadiusMeters = Constants.MK4SDS.WHEEL_DIAMETER
-
     // Returns the new optimized state of the module while sending motor voltage commands.
-    fun runSetpoint(state: SwerveModuleState): SwerveModuleState{
+    fun runWithState(newState: SwerveModuleState): SwerveModuleState{
 
-        // Optimize the desired module state based on the current angle.
-        val optimizedState = SwerveModuleState.optimize(state, getAngle())
+        // Optimize the desired module state based on the current module angle.
+        val optimizedState = SwerveModuleState.optimize(newState, getModuleAngle())
     
-        // Set the turn (rotation) voltage using a feedback controller.
-        io.setTurnVoltage(turnFeedback.calculate(getAngle().radians, optimizedState.angle.radians))
-    
-        // Adjust the speed based on the turn feedback (possibly to account for strafing).
-        optimizedState.speedMetersPerSecond *= cos(turnFeedback.positionError)
-    
-        // Calculate the desired velocity in radians per second.
-        val velocityRadPerSec = optimizedState.speedMetersPerSecond / wheelRadiusMeters
-    
-        // Set the drive (linear motion) voltage using a feedforward controller.
-        io.setDriveVoltage(driveFeedforward.calculate(inputs.driveVelocityRadPerSec, velocityRadPerSec))
+        // Set both PIDs references, (Velocity & Position), to tell the module's SparkMaxes where to go
+        io.setPIDReferences(optimizedState.speedMetersPerSecond, optimizedState.angle.radians)
 
         return optimizedState
     }
@@ -63,23 +48,21 @@ class Module(
     }
 
     // Returns the current turn angle of the module. 
-    fun getAngle(): Rotation2d = Rotation2d(MathUtil.angleModulus(inputs.turnAbsolutePositionRad))
+    fun getModuleAngle(): Rotation2d = Rotation2d(MathUtil.angleModulus(inputs.turnAbsolutePositionRad))
 
     // Returns the current drive position of the module in meters. 
-    fun getPositionMeters(): Double = inputs.drivePositionRad * wheelRadiusMeters
+    fun getModulePositionMeters(): Double = inputs.drivePositionRad * Constants.MK4SDS.WHEEL_DIAMETER
 
     // Returns the current drive velocity of the module in meters per second. 
-    fun getVelocityMetersPerSec(): Double = inputs.driveVelocityRadPerSec * wheelRadiusMeters
+    fun getVelocityMetersPerSec(): Double = inputs.driveVelocityRadPerSec * Constants.MK4SDS.WHEEL_DIAMETER
 
     // Returns the module position (turn angle and drive position).
-    fun getPosition(): SwerveModulePosition = SwerveModulePosition(getPositionMeters(), getAngle())
+    fun getModulePosition(): SwerveModulePosition = SwerveModulePosition(getModulePositionMeters(), getModuleAngle())
 
     // Returns the module state (turn angle and drive velocity).
-    fun getState(): SwerveModuleState = SwerveModuleState(getVelocityMetersPerSec(), getAngle())
-
-    // Returns the drive velocity in radians/sec.
-    fun getCharacterizationVelocity(): Double = inputs.driveVelocityRadPerSec
+    fun getModuleState(): SwerveModuleState = SwerveModuleState(getVelocityMetersPerSec(), getModuleAngle())
 
     fun stop(){io.stop()}
 
 }
+

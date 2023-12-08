@@ -14,7 +14,7 @@ import frc.robot.wmlib2.sensor.IO_Gyro.GyroIOInputs
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.math.MathUtil;
 class IO_GyroSim(
-) : IO_Gyro{
+) : IO_Gyro{ // DOES NOT ACTUALLY SIMULATE RIGHT NOW!
 
     val ahrs = AHRS(SPI.Port.kMXP)
 
