@@ -2,6 +2,12 @@
 
 package frc.robot.wmlib2.swerve
 
+import com.pathplanner.lib.commands.FollowPathHolonomic
+import com.pathplanner.lib.commands.FollowPathWithEvents
+import com.pathplanner.lib.path.PathPlannerPath
+import com.pathplanner.lib.util.HolonomicPathFollowerConfig
+import com.pathplanner.lib.util.PIDConstants
+import com.pathplanner.lib.util.ReplanningConfig
 import edu.wpi.first.wpilibj2.command.SubsystemBase
 import frc.robot.Constants
 import frc.robot.wmlib2.sensor.IO_Gyro
@@ -18,6 +24,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry
 import edu.wpi.first.math.kinematics.SwerveModulePosition
 import edu.wpi.first.math.kinematics.SwerveModuleState
+import edu.wpi.first.wpilibj2.command.Command
 import kotlin.math.abs
 
 class Swerve(
@@ -211,5 +218,30 @@ class Swerve(
 
     // Get the estimated pose of the robot from vision
     fun getEstimatedPose(): Pose2d = traditionalSwerveDriveOdometry.poseMeters // Return pose estimator position when in usage: poseEstimator.getLatestPose();
+
+    // Assuming this is a method in your drive subsystem
+    fun followPathPlanner(pathName: String): Command {
+        val path = PathPlannerPath.fromPathFile(pathName)
+
+        // You must wrap the path following command in a FollowPathWithEvents command in order for event markers to work
+        return FollowPathWithEvents(
+                FollowPathHolonomic(
+                        path,
+                        this::getEstimatedPose, // Robot pose supplier
+                        this::setpoint, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+                        this::runVelocity, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
+                        HolonomicPathFollowerConfig(
+                                PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
+                                PIDConstants(5.0, 0.0, 0.0), // Rotation PID constants
+                                4.5, // Max module speed, in m/s
+                                0.4, // Drive base radius in meters. Distance from robot center to furthest module.
+                                ReplanningConfig() // Default path replanning config. See the API for the options here
+                        ),
+                        this // Reference to this subsystem to set requirements
+                ),
+                path, // FollowPathWithEvents also requires the path
+                this::getEstimatedPose // FollowPathWithEvents also requires the robot pose supplier
+        )
+    }
 
 }

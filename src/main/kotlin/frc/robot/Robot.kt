@@ -1,16 +1,16 @@
 package frc.robot
 
-import org.littletonrobotics.junction.LogFileUtil;
-import org.littletonrobotics.junction.LoggedRobot;
-import org.littletonrobotics.junction.Logger;
-import org.littletonrobotics.junction.networktables.NT4Publisher;
-import org.littletonrobotics.junction.wpilog.WPILOGReader;
-import org.littletonrobotics.junction.wpilog.WPILOGWriter;
-import org.littletonrobotics.junction.inputs.LoggedPowerDistribution
-import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
-import edu.wpi.first.wpilibj.PowerDistribution;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import org.littletonrobotics.junction.LoggedRobot
+import org.littletonrobotics.junction.Logger
+import org.littletonrobotics.junction.LogFileUtil
+import org.littletonrobotics.junction.networktables.NT4Publisher
+import org.littletonrobotics.junction.wpilog.WPILOGReader
+import org.littletonrobotics.junction.wpilog.WPILOGWriter
+import edu.wpi.first.wpilibj2.command.Command
+import edu.wpi.first.wpilibj2.command.CommandScheduler
+import edu.wpi.first.wpilibj.PowerDistribution
+
+
 
 /**
  * 
@@ -23,7 +23,7 @@ class Robot : LoggedRobot() {
     private var autonomousCommand: Command? = null
     private var robotContainer: RobotContainer? = null
 
-    private var mode = Constants.RobotMode.SIM
+    private var mode = Constants.RobotMode.REAL
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
@@ -33,33 +33,22 @@ class Robot : LoggedRobot() {
         // autonomous chooser on the dashboard.
         robotContainer = RobotContainer(mode)
 
-        Logger.recordMetadata("ProjectName", "SwerveDrive2024Advantage")
-        Logger.recordMetadata("Github", "https://github.com/WindingMotor/SwerveDrive2024Advantage")
-        Logger.recordMetadata("Team", "2106")
-        Logger.recordMetadata("Last Competition", "Off-season")
+        Logger.recordMetadata("ProjectName", "ADV") // Set a metadata value
 
-        when (mode){
-
-            Constants.RobotMode.REAL -> {
-                val folder = "/media/sda2"
-                Logger.addDataReceiver(WPILOGWriter(folder))
-
-                Logger.addDataReceiver(NT4Publisher())
-                LoggedPowerDistribution.getInstance()
-            }
-
-            Constants.RobotMode.SIM -> {
-                Logger.addDataReceiver(NT4Publisher())
-            }
-            
-            Constants.RobotMode.REPLAY -> {
-                val path = LogFileUtil.findReplayLog()
-                Logger.setReplaySource(WPILOGReader(path))
-                Logger.addDataReceiver(WPILOGWriter(LogFileUtil.addPathSuffix(path, "_sim")))
-            }
+        if(mode == Constants.RobotMode.REAL){
+            Logger.addDataReceiver(WPILOGWriter("/U")) // Log to a USB stick
+            Logger.addDataReceiver(NT4Publisher()) // Publish data to NetworkTables
+            //PowerDistribution(1, ModuleType.) // Enables power distribution logging
+        }else{
+            setUseTiming(false) // Run as fast as possible
+            val logPath = LogFileUtil.findReplayLog() // Pull the replay log from AdvantageScope (or prompt the user)
+            Logger.setReplaySource(WPILOGReader(logPath)) // Read replay log
+            Logger.addDataReceiver(WPILOGWriter(LogFileUtil.addPathSuffix(logPath, "_sim"))) // Save outputs to a new log
         }
-
-        Logger.start()
+        
+        // Logger.disableDeterministicTimestamps() // See "Deterministic Timestamps" in the "Understanding Data Flow" page
+        Logger.start() // Start logging! No more data receivers, replay sources, or metadata values may be added.
+        
 
     }
 

@@ -1,0 +1,406 @@
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid2374.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid2456.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid2538.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid2620.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid2702.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid2784.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid2866.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3085.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3167.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3249.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3331.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3413.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3495.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3577.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3659.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3741.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3823.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3905.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid3987.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4069.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4151.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4233.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4315.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4397.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4479.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4561.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4643.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4725.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4807.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4889.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid4971.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5053.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5135.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5217.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5299.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5381.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5463.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5545.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5627.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5709.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5791.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5873.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid5955.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid6037.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid6119.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid6201.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid6283.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid6505.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid6587.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid6669.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid6751.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid6969.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xb406e000, 4096, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 4096 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid7051.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid7137.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid7219.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid7301.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid7383.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid7465.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid7547.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid7629.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid7711.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xb3fb7000, 4096, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 4096 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid7801.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid8013.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xade00000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid8095.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid8177.log
+OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) failed; error='Not enough space' (errno=12)
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
+# An error report file with more information is saved as:
+# /tmp/hs_err_pid8259.log
+Pause
+Discard
+Clear
+Don't Show Prints
+Switch to Viewer
+Don't Show Warnings
+Disconnect
+Show Timestamps
+Save Log
+Set Team Number

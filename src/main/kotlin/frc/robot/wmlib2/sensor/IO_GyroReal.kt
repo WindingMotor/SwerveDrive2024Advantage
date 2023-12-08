@@ -26,6 +26,7 @@ class IO_GyroReal(
         inputs.connected = ahrs.isConnected
         inputs.yawPosition = getRotation2dWrappedRadians()
         inputs.yawPositionRadians = getRotation2dWrappedRadians().radians
+        inputs.yawPositionDegrees = getRotation2dWrappedRadians().degrees
         inputs.pitchPosition = Rotation2d()
         inputs.rollPosition = Rotation2d()
     }

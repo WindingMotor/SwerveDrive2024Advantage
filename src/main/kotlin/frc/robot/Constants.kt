@@ -26,11 +26,12 @@ object Constants{
         val moduleName: String
     ){
 
-        FRONTLEFT(1, 2, 1, 4.0, "FrontLeft"),
-        FRONTRIGHT(3, 4, 2, 4.0, "FrontRight"),
-        BACKLEFT(5, 6, 3, 4.0, "BackLeft"),
-        BACKRIGHT(7, 8, 4, 4.0, "BackRight"),
-        DEFAULT(9, 10, 32, 32.0, "DEFAULT")
+        FRONTLEFT(1, 2, 0, 1.65, "FrontLeft"),
+        FRONTRIGHT(3, 4, 1, 1.39, "FrontRight"),
+        BACKLEFT(7, 8, 3, 1.8, "BackLeft"),
+        BACKRIGHT(5, 6, 2, -0.12, "BackRight"),
+
+        DEFAULT(26, 27, 32, 32.0, "DEFAULT")
     }
 
     object MK4SDS{

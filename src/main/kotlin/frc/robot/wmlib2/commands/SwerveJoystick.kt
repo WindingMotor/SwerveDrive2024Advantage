@@ -68,22 +68,24 @@ class SwerveJoystick(
             currentRotation = currentRotation.plus(Rotation2d(Math.PI))
         }
 
-        // Apply field relative or non-field relative for PathPlanner
-        speeds = if(isFieldRelative){
+        // Apply field relative or non-field relative
+        speeds = if (isFieldRelative){
             ChassisSpeeds.fromFieldRelativeSpeeds(
                     speeds.vxMetersPerSecond,
                     speeds.vyMetersPerSecond,
                     speeds.omegaRadiansPerSecond,
                     currentRotation
             )
-        }else{
-            ChassisSpeeds.fromRobotRelativeSpeeds(
-                    speeds.vxMetersPerSecond,
-                    speeds.vyMetersPerSecond,
-                    speeds.omegaRadiansPerSecond,
-                    currentRotation
-            )
+            } else {
+        speeds
         }
+
+// Get current drive translation from vision, flip if need be
+//val driveTranslation = AllianceFlipUtil.apply(swerve.getEstimatedPose().translation)
+
+       // swerve.runVelocity(speeds)
+
+
 
         // Get current drive translation from vision, flip if need be
         //val driveTranslation = AllianceFlipUtil.apply(swerve.getEstimatedPose().translation)
