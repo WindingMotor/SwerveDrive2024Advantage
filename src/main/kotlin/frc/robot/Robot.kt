@@ -23,7 +23,7 @@ class Robot : LoggedRobot() {
     private var autonomousCommand: Command? = null
     private var robotContainer: RobotContainer? = null
 
-    private var mode = Constants.RobotMode.REAL
+    private var mode = Constants.RobotMode.SIM
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
@@ -39,6 +39,8 @@ class Robot : LoggedRobot() {
             Logger.addDataReceiver(WPILOGWriter("/U")) // Log to a USB stick
             Logger.addDataReceiver(NT4Publisher()) // Publish data to NetworkTables
             //PowerDistribution(1, ModuleType.) // Enables power distribution logging
+        }else if(mode == Constants.RobotMode.SIM){
+            Logger.addDataReceiver(NT4Publisher())
         }else{
             setUseTiming(false) // Run as fast as possible
             val logPath = LogFileUtil.findReplayLog() // Pull the replay log from AdvantageScope (or prompt the user)
