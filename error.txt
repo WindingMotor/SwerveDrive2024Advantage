@@ -394,13 +394,3 @@ OpenJDK Client VM warning: INFO: os::commit_memory(0xae000000, 2097152, 0) faile
 # Native memory allocation (mmap) failed to map 2097152 bytes for committing reserved memory.
 # An error report file with more information is saved as:
 # /tmp/hs_err_pid8259.log
-Pause
-Discard
-Clear
-Don't Show Prints
-Switch to Viewer
-Don't Show Warnings
-Disconnect
-Show Timestamps
-Save Log
-Set Team Number

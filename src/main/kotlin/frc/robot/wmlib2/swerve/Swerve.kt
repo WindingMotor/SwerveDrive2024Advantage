@@ -54,8 +54,7 @@ class Swerve(
     private var lastModulePositionsMeters = arrayOf(0.0, 0.0, 0.0, 0.0)
 
     // Non-vision odometry test
-    private val traditionalSwerveDriveOdometry = SwerveDriveOdometry(Constants.Kinematics.KINEMATICS, gyroInputs.yawPosition, arrayOf(SwerveModulePosition(), SwerveModulePosition(), SwerveModulePosition(), SwerveModulePosition()))
-
+    private val traditionalOdometry = SwerveDriveOdometry(Constants.Kinematics.KINEMATICS, gyroInputs.yawPosition, getSwerveModulePositions().toTypedArray())
     override fun periodic(){
 
         // Update gyroscope inputs.
@@ -105,6 +104,17 @@ class Swerve(
     fun stop(){
         runWithSpeeds(ChassisSpeeds())
     }
+
+    fun getSwerveModulePositions(): MutableList<SwerveModulePosition>{
+        val positions = mutableListOf<SwerveModulePosition>()
+
+        for (module in modules) {
+            positions.add(module.getModulePosition())
+        }
+        return positions
+    }
+
+
 
     /*
     fun followPathPlanner(pathName: String): Command {

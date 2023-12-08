@@ -11,7 +11,6 @@ import frc.robot.wmlib2.intake.IO_IntakeSim
 import frc.robot.wmlib2.sensor.IO_GyroReal
 import frc.robot.wmlib2.sensor.IO_GyroSim
 import frc.robot.wmlib2.swerve.IO_ModuleReal
-import frc.robot.wmlib2.swerve.IO_ModuleSim
 import frc.robot.wmlib2.swerve.Swerve
 
 class RobotContainer(mode: RobotMode) {
