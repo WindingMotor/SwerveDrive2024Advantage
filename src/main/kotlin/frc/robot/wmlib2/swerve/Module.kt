@@ -18,8 +18,6 @@ import frc.robot.Constants.MK4SDS
 import frc.robot.Constants
 import kotlin.math.cos
 
-
-
 class Module(
     private val io: IO_ModuleBase,
     private val settings: ModuleSettings

@@ -11,6 +11,7 @@ import frc.robot.wmlib2.intake.IO_IntakeSim
 import frc.robot.wmlib2.sensor.IO_GyroReal
 import frc.robot.wmlib2.sensor.IO_GyroSim
 import frc.robot.wmlib2.swerve.IO_ModuleReal
+import frc.robot.wmlib2.swerve.IO_ModuleSim
 import frc.robot.wmlib2.swerve.Swerve
 
 class RobotContainer(mode: RobotMode) {
@@ -22,7 +23,7 @@ class RobotContainer(mode: RobotMode) {
 
     //private val intake = Intake(if(isReal) IO_IntakeReal() else IO_IntakeSim())
 
-    /* 
+
     private val swerve = Swerve(
             if(isReal) IO_ModuleReal(Constants.ModuleSettings.FRONTLEFT) else IO_ModuleSim(Constants.ModuleSettings.FRONTLEFT),
             if(isReal) IO_ModuleReal(Constants.ModuleSettings.FRONTRIGHT) else IO_ModuleSim(Constants.ModuleSettings.FRONTRIGHT),
@@ -30,7 +31,7 @@ class RobotContainer(mode: RobotMode) {
             if(isReal) IO_ModuleReal(Constants.ModuleSettings.BACKRIGHT) else IO_ModuleSim(Constants.ModuleSettings.BACKRIGHT),
             if(isReal) IO_GyroReal() else IO_GyroSim()
     )
-    */
+
 
     init{
 
@@ -39,14 +40,15 @@ class RobotContainer(mode: RobotMode) {
         val driverBindings = Constants.DriverBindings.XBOX
 
         
-        /* 
+
         swerve.defaultCommand = SwerveJoystick(
             { if(driverBindings.xInverted) -driverController.getRawAxis(driverBindings.xInput) else driverController.getRawAxis(driverBindings.xInput) },
             { if(driverBindings.yInverted) -driverController.getRawAxis(driverBindings.yInput) else driverController.getRawAxis(driverBindings.yInput) },
             { if(driverBindings.rInverted) -driverController.getRawAxis(driverBindings.rInput) else driverController.getRawAxis(driverBindings.rInput) },
+            { true },
             swerve
         )
-        */
+
 
     }
 

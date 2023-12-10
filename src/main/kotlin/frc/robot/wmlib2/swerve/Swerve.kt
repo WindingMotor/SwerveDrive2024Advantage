@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.DriverStation
 import edu.wpi.first.math.geometry.Pose2d
 import edu.wpi.first.math.geometry.Pose3d
 import edu.wpi.first.math.geometry.Rotation2d
+import edu.wpi.first.math.geometry.Rotation3d
 import edu.wpi.first.math.geometry.Translation2d
 import edu.wpi.first.math.geometry.Twist2d
 import edu.wpi.first.math.geometry.Twist3d
@@ -78,16 +79,23 @@ class Swerve(
             modules[index].runWithState(states[index])
         }
 
-        /*
-        // Log the current robot pose in 3d, 2d, and 2d traditional
-        Logger.recordOutput("Odometry/Robot3d", robotPose)
-        Logger.recordOutput("Odometry/Robot2d", Pose2d(robotPose.x, robotPose.y, robotPose.rotation.toRotation2d()))
+        // Record the setpoint states
+        Logger.recordOutput("SwerveStates/setpoints", *states)
 
-        Logger.recordOutput("Odometry/Traditional2d", Pose2d(
-                Translation2d(traditionalSwerveDriveOdometry.poseMeters.x, traditionalSwerveDriveOdometry.poseMeters.y),
-                Rotation2d(traditionalSwerveDriveOdometry.poseMeters.rotation.radians))
+        // Record the current, "real", states
+        val measuredStates = mutableListOf(SwerveModuleState(), SwerveModuleState(), SwerveModuleState(), SwerveModuleState())
+        for(i in 0 until 4){ measuredStates[i] = modules[i].getModuleState() }
+        Logger.recordOutput("SwerveStates/Measured", *measuredStates.toTypedArray())
+
+
+        // Log the current robot pose in 3d, 2d, and 2d traditional
+        Logger.recordOutput("Odometry/estimatedPose", Pose2d(getRobotEstimatedPose().x, getRobotEstimatedPose().y, getRobotEstimatedPose().rotation))
+
+        Logger.recordOutput("Odometry/traditionalPose", Pose2d(
+                Translation2d(traditionalOdometry.poseMeters.x, traditionalOdometry.poseMeters.y),
+                Rotation2d(traditionalOdometry.poseMeters.rotation.radians))
         )
-        */
+
 
 
 
@@ -114,7 +122,9 @@ class Swerve(
         return positions
     }
 
+    fun getRobotEstimatedPose(): Pose2d = Pose2d(Translation2d(traditionalOdometry.poseMeters.x, traditionalOdometry.poseMeters.y), getRobotEstimatedRotation())
 
+    fun getRobotEstimatedRotation(): Rotation2d = gyroInputs.yawPosition // REPLACE WITH POSE ESTIMATOR
 
     /*
     fun followPathPlanner(pathName: String): Command {

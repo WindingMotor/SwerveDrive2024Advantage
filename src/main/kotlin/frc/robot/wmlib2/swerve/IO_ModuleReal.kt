@@ -9,6 +9,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.CANSparkMax.IdleMode
 import com.revrobotics.CANSparkMax
 import com.revrobotics.AbsoluteEncoder
+import edu.wpi.first.math.MathUtil
+import edu.wpi.first.math.geometry.Rotation2d
 import edu.wpi.first.wpilibj.DutyCycleEncoder
 import frc.robot.Constants
 import frc.robot.Constants.MK4SDS
@@ -80,7 +82,11 @@ class IO_ModuleReal(val settings: ModuleSettings = Constants.ModuleSettings.DEFA
         inputs.driveCurrentAmps = driveMotor.outputCurrent
         inputs.driveTempCelcius = driveMotor.motorTemperature
 
-        inputs.turnAbsolutePositionRad = Math.toDegrees(turnAbsoluteEncoder.absolutePosition)
+        // Get absolute position -> Convert to radians -> Wrap from -pi to pi -> Subtract offset -> Wrap again
+        inputs.turnAbsolutePositionRad = MathUtil.angleModulus(
+            Rotation2d(MathUtil.angleModulus(Math.toRadians(turnAbsoluteEncoder.absolutePosition))).minus(settings.absoluteEncoderOffset).radians
+        )
+
         inputs.turnPositionRad = turnEncoder.position
         inputs.turnVelocityRadPerSec = turnEncoder.velocity
         inputs.driveAppliedPercentage = turnMotor.appliedOutput

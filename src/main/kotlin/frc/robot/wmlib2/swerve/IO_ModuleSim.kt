@@ -16,60 +16,61 @@ import edu.wpi.first.wpilibj.simulation.FlywheelSim
 import frc.robot.Constants
 import frc.robot.Constants.MK4SDS
 import frc.robot.Constants.ModuleSettings
+import jdk.jfr.Percentage
 
-/* REMOVED FOR NOW -> NEED TO GET REAL DRIVEBASE DONE!
+
 // Abstracted from IO_IntakeBase, contains the code to simulate the hardware.
 class IO_ModuleSim(val settings: ModuleSettings = Constants.ModuleSettings.DEFAULT) : IO_ModuleBase{
 
-        private val driveSim = FlywheelSim(DCMotor.getNEO(1), 6.75, 0.025)
-        private val turnSim = FlywheelSim(DCMotor.getNEO(1), 150.0 / 7.0, 0.004)
 
-        private var turnRelativePositionRad = 0.0
-        private var turnAbsolutePositionRad = Math.random() * 2.0 * Math.PI
-        private var driveAppliedVolts = 0.0
-        private var turnAppliedVolts = 0.0
+private val driveSim = FlywheelSim(DCMotor.getNEO(1), 6.75, 0.025)
+private val turnSim = FlywheelSim(DCMotor.getNEO(1), 150.0 / 7.0, 0.004)
 
-        override fun updateInputs(inputs: ModuleInputs) {
-            driveSim.update(Constants.loopPeriodSecs)
-            turnSim.update(Constants.loopPeriodSecs)
+private var turnRelativePositionRad = 0.0
+private var turnAbsolutePositionRad = Math.random() * 2.0 * Math.PI
+private var driveAppliedVolts = 0.0
+private var turnAppliedVolts = 0.0
 
-            val angleDiffRad = turnSim.angularVelocityRadPerSec * Constants.loopPeriodSecs
-            turnRelativePositionRad += angleDiffRad
-            turnAbsolutePositionRad += angleDiffRad
+override fun updateInputs(inputs: ModuleInputs) {
+    driveSim.update(Constants.loopPeriodSecs)
+    turnSim.update(Constants.loopPeriodSecs)
 
-            while(turnAbsolutePositionRad < 0){
-                turnAbsolutePositionRad += 2.0 * Math.PI
-            }
+    val angleDiffRad = turnSim.angularVelocityRadPerSec * Constants.loopPeriodSecs
+    turnRelativePositionRad += angleDiffRad
+    turnAbsolutePositionRad += angleDiffRad
 
-            while(turnAbsolutePositionRad > 2.0 * Math.PI){
-                turnAbsolutePositionRad -= 2.0 * Math.PI
-            }
-
-            inputs.drivePositionRad += driveSim.angularVelocityRadPerSec * Constants.loopPeriodSecs
-            inputs.driveVelocityRadPerSec = driveSim.angularVelocityRadPerSec
-            inputs.driveAppliedVolts = driveAppliedVolts
-            inputs.driveCurrentAmps = driveSim.currentDrawAmps
-            inputs.driveTempCelcius = 0.0
-
-            inputs.turnAbsolutePositionRad = turnAbsolutePositionRad
-            inputs.turnPositionRad = turnRelativePositionRad
-            inputs.turnVelocityRadPerSec = turnSim.angularVelocityRadPerSec
-            inputs.turnAppliedVolts = turnAppliedVolts
-            inputs.turnCurrentAmps = turnSim.currentDrawAmps
-            inputs.turnTempCelcius = 0.0
-        }
-
-        override fun setDriveVoltage(voltage: Double){
-            driveAppliedVolts = MathUtil.clamp(voltage, -12.0, 12.0)
-            driveSim.setInputVoltage(driveAppliedVolts)
-        }
-
-        override fun setTurnVoltage(voltage: Double){
-            turnAppliedVolts = MathUtil.clamp(voltage, -12.0, 12.0)
-            turnSim.setInputVoltage(turnAppliedVolts)
-        }
-
+    while(turnAbsolutePositionRad < 0){
+        turnAbsolutePositionRad += 2.0 * Math.PI
     }
 
+    while(turnAbsolutePositionRad > 2.0 * Math.PI){
+        turnAbsolutePositionRad -= 2.0 * Math.PI
+    }
 
- */
+    inputs.drivePositionRad += driveSim.angularVelocityRadPerSec * Constants.loopPeriodSecs
+    inputs.driveVelocityRadPerSec = driveSim.angularVelocityRadPerSec
+    inputs.driveAppliedPercentage = driveAppliedVolts / 12.0
+    inputs.driveCurrentAmps = driveSim.currentDrawAmps
+    inputs.driveTempCelcius = 0.0
+
+    inputs.turnAbsolutePositionRad = turnAbsolutePositionRad
+    inputs.turnPositionRad = turnRelativePositionRad
+    inputs.turnVelocityRadPerSec = turnSim.angularVelocityRadPerSec
+    inputs.turnAppliedPercentage = turnAppliedVolts / 12.0
+    inputs.turnCurrentAmps = turnSim.currentDrawAmps
+    inputs.turnTempCelcius = 0.0
+}
+
+override fun setDriveOutput(percent: Double){
+    driveAppliedVolts = MathUtil.clamp(percent * 12.0, -12.0, 12.0)
+    driveSim.setInputVoltage(11.0)
+}
+
+override fun setTurnOutput(percent: Double){
+    turnAppliedVolts = MathUtil.clamp(percent * 12.0, -12.0, 12.0)
+    turnSim.setInputVoltage(8.0)
+}
+
+}
+
+

@@ -1,6 +1,7 @@
 
 package frc.robot
 
+import edu.wpi.first.math.geometry.Rotation2d
 import edu.wpi.first.math.geometry.Translation2d
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics
 
@@ -22,16 +23,16 @@ object Constants{
     enum class ModuleSettings(
         val driveID: Int, val turnID: Int,
         val absoluteEncoderID: Int,
-        val absoluteEncoderOffset: Double,
+        val absoluteEncoderOffset: Rotation2d,
         val moduleName: String
     ){
 
-        FRONTLEFT(1, 2, 0, 1.65, "FrontLeft"),
-        FRONTRIGHT(3, 4, 1, 1.39, "FrontRight"),
-        BACKLEFT(7, 8, 3, 1.8, "BackLeft"),
-        BACKRIGHT(5, 6, 2, -0.12, "BackRight"),
+        FRONTLEFT(1, 2, 0, Rotation2d() /* Offsets are in radians */, "FrontLeft"),
+        FRONTRIGHT(3, 4, 1, Rotation2d(), "FrontRight"),
+        BACKLEFT(7, 8, 3, Rotation2d(), "BackLeft"),
+        BACKRIGHT(5, 6, 2, Rotation2d(), "BackRight"),
 
-        DEFAULT(26, 27, 32, 32.0, "DEFAULT")
+        DEFAULT(26, 27, 32, Rotation2d(), "DEFAULT")
     }
 
     object MK4SDS{
