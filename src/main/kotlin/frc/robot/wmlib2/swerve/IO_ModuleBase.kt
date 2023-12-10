@@ -46,7 +46,7 @@ interface IO_ModuleBase{
         override fun fromLog(table: LogTable){
             drivePositionRad = table.get("drivePositionRad", drivePositionRad)
             driveVelocityRadPerSec = table.get("driveVelocityRadPerSec", driveVelocityRadPerSec)
-            driveAppliedPercentage = table.get("driveAppliedVolts", driveAppliedPercentage)
+            driveAppliedPercentage = table.get("driveAppliedPercentage", driveAppliedPercentage)
             driveCurrentAmps = table.get("driveCurrentAmps", driveCurrentAmps)
             driveTempCelcius = table.get("turnTempCelsius", driveTempCelcius)
 

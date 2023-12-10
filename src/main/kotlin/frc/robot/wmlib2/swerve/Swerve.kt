@@ -67,9 +67,22 @@ class Swerve(
             module.periodic()
         }
 
+        // Get twist from setpointSpeeds
+        val setpointTwist = Pose2d().log(Pose2d(
+                setpointSpeeds.vxMetersPerSecond * Constants.loopPeriodSecs,
+                setpointSpeeds.vyMetersPerSecond * Constants.loopPeriodSecs,
+                Rotation2d(setpointSpeeds.omegaRadiansPerSecond * Constants.loopPeriodSecs)
+        ))
+
+        // Adjust the speeds using twist
+        val setpointSpeedsAdjusted = ChassisSpeeds(
+                setpointTwist.dx / Constants.loopPeriodSecs,
+                setpointTwist.dy / Constants.loopPeriodSecs,
+                setpointTwist.dtheta / Constants.loopPeriodSecs
+        )
 
         // Get the swerve module states from kinematics method using current setpointSpeeds
-        val states = Constants.Kinematics.KINEMATICS.toSwerveModuleStates(setpointSpeeds)
+        val states = Constants.Kinematics.KINEMATICS.toSwerveModuleStates(setpointSpeedsAdjusted)
 
         // Desaturate the states, make every turn position and velocity is possible.
         SwerveDriveKinematics.desaturateWheelSpeeds(states, Constants.Kinematics.MAX_LINEAR_VELOCITY)

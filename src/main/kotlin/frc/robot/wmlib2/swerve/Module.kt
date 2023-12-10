@@ -25,14 +25,30 @@ class Module(
 
     private val inputs = IO_ModuleBase.ModuleInputs()
 
+    private  val simDrivePID = PIDController(0.1, 0.0, 0.0)
+    private val simTurnPID = PIDController(0.1, 0.0, 0.0)
+
+
     // Returns the new optimized state of the module while sending motor voltage commands.
     fun runWithState(newState: SwerveModuleState): SwerveModuleState{
 
         // Optimize the desired module state based on the current module angle.
         val optimizedState = SwerveModuleState.optimize(newState, getModuleAngle())
-    
-        // Set both PIDs references, (Velocity & Position), to tell the module's SparkMaxes where to go
-        io.setPIDReferences(optimizedState.speedMetersPerSecond, optimizedState.angle.radians)
+
+
+        if(Constants.currentMode == Constants.RobotMode.REAL){
+            // Set both PIDs references, (Velocity & Position), to tell the module's SparkMaxes where to go
+            io.setPIDReferences(optimizedState.speedMetersPerSecond, optimizedState.angle.radians)
+        }else{
+            // Set output speeds using RoboRio PID controllers for simulation
+            io.setDriveOutput(simTurnPID.calculate(getModuleAngle().radians, optimizedState.angle.radians))
+
+            //optimizedState.speedMetersPerSecond *= cos(simTurnPID.positionError) // Update velocity based off turn error
+
+            val velocityRadPerSec = optimizedState.speedMetersPerSecond / Constants.MK4SDS.WHEEL_DIAMETER
+            io.setTurnOutput(simDrivePID.calculate(inputs.driveVelocityRadPerSec, velocityRadPerSec))
+        }
+
 
         return optimizedState
     }
@@ -58,7 +74,7 @@ class Module(
     fun getModulePosition(): SwerveModulePosition = SwerveModulePosition(getModulePositionMeters(), getModuleAngle())
 
     // Returns the module state (turn angle and drive velocity).
-    fun getModuleState(): SwerveModuleState = SwerveModuleState(getVelocityMetersPerSec(), getModuleAngle())
+    fun getModuleState(): SwerveModuleState = SwerveModuleState(getModulePositionMeters(), getModuleAngle())
 
     fun stop(){io.stop()}
 

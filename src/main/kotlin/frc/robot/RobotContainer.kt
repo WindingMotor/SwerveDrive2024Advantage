@@ -14,10 +14,10 @@ import frc.robot.wmlib2.swerve.IO_ModuleReal
 import frc.robot.wmlib2.swerve.IO_ModuleSim
 import frc.robot.wmlib2.swerve.Swerve
 
-class RobotContainer(mode: RobotMode) {
+class RobotContainer() {
 
 
-    private val isReal = if(mode == RobotMode.REAL) true else false
+    private val isReal = if(Constants.currentMode == RobotMode.REAL) true else false
 
     private val driverController = CommandXboxController(3)
 

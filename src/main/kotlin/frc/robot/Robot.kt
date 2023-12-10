@@ -23,7 +23,7 @@ class Robot : LoggedRobot() {
     private var autonomousCommand: Command? = null
     private var robotContainer: RobotContainer? = null
 
-    private var mode = Constants.RobotMode.SIM
+    private var mode = Constants.currentMode
     /**
      * This function is run when the robot is first started up and should be used for any
      * initialization code.
@@ -31,7 +31,7 @@ class Robot : LoggedRobot() {
     override fun robotInit() {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
-        robotContainer = RobotContainer(mode)
+        robotContainer = RobotContainer()
 
         Logger.recordMetadata("ProjectName", "ADV") // Set a metadata value
 

@@ -8,7 +8,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics
 object Constants{
 
     // Current robot mode.
-    val currentMode: RobotMode = RobotMode.REAL
+    val currentMode: RobotMode = RobotMode.SIM
     val loopPeriodSecs = 0.02;
 
     enum class RobotMode{
