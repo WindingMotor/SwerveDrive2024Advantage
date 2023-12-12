@@ -25,7 +25,7 @@ class IO_ModuleSim(val settings: ModuleSettings = Constants.ModuleSettings.DEFAU
     private val turnSim = FlywheelSim(DCMotor.getNEO(1), 150.0 / 7.0, 0.004)
 
     private var turnRelativePositionRad = 0.0
-    private var turnAbsolutePositionRad = Math.random() * 2.0 * Math.PI
+    private var turnAbsolutePositionRad = 0.0
     private var driveAppliedPercentage = 0.0
     private var turnAppliedPercentage = 0.0
 
@@ -62,7 +62,7 @@ class IO_ModuleSim(val settings: ModuleSettings = Constants.ModuleSettings.DEFAU
 
     override fun setDriveOutput(percent: Double) {
         driveAppliedPercentage = MathUtil.clamp(percent, -1.0, 1.0)
-        driveSim.setInputVoltage(driveAppliedPercentage * 12.0)
+        driveSim.setInputVoltage(1.0)
     }
 
     override fun setTurnOutput(percent: Double) {
